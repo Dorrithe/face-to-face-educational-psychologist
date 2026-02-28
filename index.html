@@ -4,23 +4,358 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Face to Face Educational Psychologist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: Georgia, serif;
-      text-align: center;
-      padding: 60px 20px;
-      background-color: #f9f6f1;
-      color: #333;
+    :root {
+      --green-lime: #7a9e2e;
+      --green-dark: #4a6b1a;
+      --green-olive: #5c7a22;
+      --green-pale: #eef3e4;
+      --green-stripe: #6b8c28;
+      --white: #ffffff;
+      --off-white: #f8f8f8;
+      --text-dark: #2e2e2e;
+      --text-mid: #555555;
+      --text-light: #888888;
+      --border: #e5e5e5;
     }
-    h1 { color: #4a9e9e; }
-    p { font-size: 1.1em; line-height: 1.8; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Open Sans', sans-serif; background: var(--white); color: var(--text-dark); font-weight: 300; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: white;
+      border-bottom: 3px solid var(--green-lime);
+      padding: 0 6%; display: flex; align-items: center;
+      justify-content: space-between; height: 75px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    .nav-logo img { height: 58px; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a { text-decoration: none; color: var(--text-mid); font-size: 0.86rem; font-weight: 400; transition: color 0.3s; }
+    .nav-links a:hover { color: var(--green-lime); }
+    .nav-cta { background: var(--green-lime) !important; color: white !important; padding: 0.55rem 1.5rem; border-radius: 25px; font-weight: 600 !important; font-size: 0.86rem !important; }
+    .nav-cta:hover { background: var(--green-dark) !important; }
+
+    /* HERO */
+    .hero {
+      margin-top: 75px;
+      position: relative; min-height: 520px;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('face-to-face-facebook-cover-page.jpg');
+      background-size: cover; background-position: center top;
+      filter: brightness(0.82);
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 6rem 8% 5rem;
+      max-width: 620px;
+    }
+    .hero-tag {
+      display: inline-block;
+      background: var(--green-lime); color: white;
+      padding: 0.35rem 1.2rem; border-radius: 20px;
+      font-size: 0.76rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 600; margin-bottom: 1.8rem;
+    }
+    .hero-title {
+      font-family: 'Raleway', sans-serif;
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      line-height: 1.2; color: white;
+      font-weight: 700; margin-bottom: 1.2rem;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .hero-sub {
+      font-size: 1rem; line-height: 1.8; color: rgba(255,255,255,0.9);
+      max-width: 500px; margin-bottom: 2.5rem; font-weight: 300;
+    }
+    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn { display: inline-block; text-decoration: none; font-size: 0.88rem; padding: 0.85rem 2rem; border-radius: 25px; font-weight: 600; transition: all 0.3s; font-family: 'Open Sans', sans-serif; cursor: pointer; border: none; }
+    .btn-green { background: var(--green-lime); color: white; }
+    .btn-green:hover { background: var(--green-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(107,140,40,0.4); }
+    .btn-white { background: white; color: var(--green-dark); }
+    .btn-white:hover { background: var(--off-white); transform: translateY(-2px); }
+    .btn-outline { border: 2px solid var(--green-lime); color: var(--green-lime); background: transparent; }
+    .btn-outline:hover { background: var(--green-lime); color: white; }
+
+    /* GREEN STRIPE */
+    .green-stripe {
+      background: var(--green-lime); padding: 1.6rem 8%; text-align: center;
+    }
+    .green-stripe p {
+      font-family: 'Raleway', sans-serif; font-size: 1.05rem; font-weight: 400;
+      color: white; letter-spacing: 0.02em;
+    }
+    .green-stripe strong { font-weight: 700; }
+
+    /* SECTION COMMONS */
+    section { padding: 5.5rem 8%; }
+    .section-label { font-size: 0.73rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green-lime); font-weight: 600; margin-bottom: 0.7rem; }
+    .section-title { font-family: 'Raleway', sans-serif; font-size: clamp(1.7rem,2.6vw,2.6rem); font-weight: 700; color: var(--text-dark); line-height: 1.25; margin-bottom: 0.9rem; }
+    .section-title span { color: var(--green-olive); }
+    .section-sub { font-size: 0.93rem; color: var(--text-mid); line-height: 1.8; margin-bottom: 3rem; }
+    .center { text-align: center; }
+    .center .section-sub { max-width: 580px; margin-left: auto; margin-right: auto; }
+
+    /* SERVICES */
+    .services { background: var(--off-white); }
+    .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.8rem; }
+    .service-card {
+      background: white; padding: 2rem 1.8rem; border-radius: 10px;
+      border: 1px solid var(--border); transition: all 0.3s;
+      border-top: 4px solid var(--green-lime);
+    }
+    .service-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.09); }
+    .service-icon { width: 50px; height: 50px; background: var(--green-pale); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1.1rem; }
+    .service-card h3 { font-family: 'Raleway', sans-serif; font-size: 1rem; font-weight: 700; color: var(--text-dark); margin-bottom: 0.6rem; }
+    .service-card p { font-size: 0.86rem; color: var(--text-mid); line-height: 1.75; }
+
+    /* ABOUT */
+    .about { background: white; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .about-img {
+      border-radius: 12px; overflow: hidden; height: 440px;
+      background-image: url('download.png');
+      background-size: cover; background-position: center;
+      position: relative;
+    }
+    .about-img::after {
+      content: ''; position: absolute; bottom: -15px; right: -15px;
+      width: 120px; height: 120px;
+      border: 4px solid var(--green-lime); border-radius: 10px; z-index: -1;
+    }
+    .about-text p { font-size: 0.93rem; line-height: 1.9; color: var(--text-mid); margin-bottom: 1.1rem; }
+    .about-text .section-sub { margin-bottom: 2rem; }
+
+    /* WHO */
+    .who { background: var(--green-pale); }
+    .who-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; }
+    .who-card {
+      background: white; padding: 2rem 1.5rem; border-radius: 10px;
+      text-align: center; transition: all 0.3s; border: 1px solid var(--border);
+      border-bottom: 3px solid var(--green-lime);
+    }
+    .who-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+    .who-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+    .who-card h4 { font-family: 'Raleway', sans-serif; font-size: 1rem; font-weight: 700; color: var(--green-dark); margin-bottom: 0.5rem; }
+    .who-card p { font-size: 0.82rem; color: var(--text-mid); line-height: 1.65; }
+
+    /* PHOTO QUOTE SECTION */
+    .photo-quote {
+      position: relative; padding: 5rem 8%;
+      background-image: url('1S2A6091.jpg');
+      background-size: cover; background-position: center;
+      text-align: center;
+    }
+    .photo-quote::before {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(90,138,0,0.82);
+    }
+    .photo-quote-content { position: relative; z-index: 2; max-width: 700px; margin: 0 auto; }
+    .photo-quote blockquote {
+      font-family: 'Raleway', sans-serif; font-size: clamp(1.3rem,2.2vw,2rem);
+      font-style: italic; font-weight: 300; color: white; line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+    .photo-quote cite { font-size: 0.82rem; color: rgba(255,255,255,0.7); letter-spacing: 0.1em; text-transform: uppercase; }
+
+    /* COURSES */
+    .courses { background: var(--text-dark); text-align: center; }
+    .courses .section-label { color: var(--green-lime); }
+    .courses .section-title { color: white; }
+    .courses .section-sub { color: rgba(255,255,255,0.65); }
+
+    /* CONTACT */
+    .contact { background: var(--off-white); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .contact-info p { font-size: 0.93rem; color: var(--text-mid); line-height: 1.8; margin-bottom: 1.8rem; }
+    .c-item { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; font-size: 0.9rem; color: var(--text-mid); }
+    .c-icon { width: 38px; height: 38px; background: var(--green-pale); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1rem; border: 2px solid var(--green-lime); }
+    .contact-btns { display: flex; gap: 1rem; margin-top: 1.8rem; flex-wrap: wrap; }
+    .contact-form { background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 4px 30px rgba(0,0,0,0.07); border-top: 4px solid var(--green-lime); }
+    .contact-form h3 { font-family: 'Raleway', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--text-dark); margin-bottom: 1.8rem; }
+    .fg { margin-bottom: 1.1rem; }
+    .fg label { display: block; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-light); margin-bottom: 0.4rem; font-weight: 600; }
+    .fg input, .fg textarea, .fg select { width: 100%; padding: 0.75rem 1rem; border: 1.5px solid var(--border); border-radius: 8px; font-family: 'Open Sans', sans-serif; font-size: 0.9rem; color: var(--text-dark); background: var(--off-white); transition: border-color 0.3s; outline: none; }
+    .fg input:focus, .fg textarea:focus, .fg select:focus { border-color: var(--green-lime); background: white; }
+    .fg textarea { height: 110px; resize: vertical; }
+    .btn-submit { width: 100%; border: none; cursor: pointer; font-family: 'Open Sans', sans-serif; background: var(--green-lime); color: white; padding: 0.9rem; border-radius: 25px; font-size: 0.9rem; font-weight: 600; transition: all 0.3s; }
+    .btn-submit:hover { background: var(--green-dark); }
+
+    /* FOOTER */
+    footer { background: #222; padding: 2.5rem 8%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-logo img { height: 42px; filter: brightness(0) invert(1); opacity: 0.8; }
+    footer p { color: rgba(255,255,255,0.35); font-size: 0.78rem; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { color: rgba(255,255,255,0.35); text-decoration: none; font-size: 0.78rem; transition: color 0.3s; }
+    .footer-links a:hover { color: var(--green-lime); }
+
+    /* MOBILE */
+    @media (max-width: 900px) {
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .about { grid-template-columns: 1fr; gap: 2.5rem; }
+      .who-grid { grid-template-columns: 1fr 1fr; }
+      .contact { grid-template-columns: 1fr; gap: 3rem; }
+      nav .nav-links { display: none; }
+      footer { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 540px) {
+      .services-grid { grid-template-columns: 1fr; }
+      section { padding: 4rem 6%; }
+      .hero-content { padding: 4rem 6% 3rem; }
+    }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: translateY(0); } }
+    .hero-content > * { animation: fadeUp 0.7s ease forwards; opacity: 0; }
+    .hero-tag { animation-delay: 0.1s; }
+    .hero-title { animation-delay: 0.25s; }
+    .hero-sub { animation-delay: 0.4s; }
+    .hero-buttons { animation-delay: 0.55s; }
   </style>
 </head>
 <body>
-  <h1>Face to Face Educational Psychologist</h1>
-  <h2>Dorrithé Labuschagne</h2>
-  <p>Supporting learning, development and wellbeing across the lifespan.</p>
-  <p>Coming soon...</p>
-  <p>WhatsApp: 082 576 6459</p>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img src="face-to-face-facebook-profile-pic.png" alt="Face to Face Educational Psychologist">
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#shop">Shop</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-tag">Educational Psychologist · Pretoria</span>
+    <h1 class="hero-title">Supporting growth<br>across the<br>human lifespan</h1>
+    <p class="hero-sub">Understanding how people learn, grow, adapt and make meaning — across all life stages. A relational, reflective approach grounded in developmental science.</p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn btn-green">Book a Consultation</a>
+      <a href="#services" class="btn btn-white">Our Services</a>
+    </div>
+  </div>
+</div>
+
+<!-- GREEN STRIPE -->
+<div class="green-stripe">
+  <p>A <strong>relational, reflective</strong> and developmentally grounded approach — for individuals, families, educators and systems.</p>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="center">
+    <p class="section-label">What We Offer</p>
+    <h2 class="section-title">Specialised <span>services</span> tailored to your needs</h2>
+    <p class="section-sub">From assessments and therapy to workshops and online resources — comprehensive support across the lifespan.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card"><div class="service-icon">🧠</div><h3>Assessments</h3><p>Comprehensive psycho-educational assessments to understand learning profiles, cognitive functioning and developmental needs across all ages.</p></div>
+    <div class="service-card"><div class="service-icon">💬</div><h3>Therapy &amp; Counselling</h3><p>Individual and family therapy using evidence-based, relational approaches to support emotional wellbeing and meaningful change.</p></div>
+    <div class="service-card"><div class="service-icon">🏫</div><h3>School Support</h3><p>Collaborative work with schools, educators and support teams to create inclusive environments that meet every child's needs.</p></div>
+    <div class="service-card"><div class="service-icon">📚</div><h3>Workshops</h3><p>Professional development and community workshops for parents, educators and organisations on learning, development and wellbeing.</p></div>
+    <div class="service-card"><div class="service-icon">💻</div><h3>Online Courses</h3><p>Self-paced courses on LearnWorlds covering key topics in child development, learning difficulties, and family wellbeing.</p></div>
+    <div class="service-card"><div class="service-icon">🛒</div><h3>Resource Shop</h3><p>Professionally developed digital and physical resources — worksheets, guides and tools for parents, educators and professionals.</p></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-img"></div>
+  <div class="about-text">
+    <p class="section-label">About Dorrithé</p>
+    <h2 class="section-title">A <span>dedicated</span> Educational Psychologist</h2>
+    <p>As an Educational Psychologist, my work focuses on learning and development across the human lifespan. I support individuals, families, educators and systems in understanding how people learn, grow, adapt and make meaning within different life stages and contexts.</p>
+    <p>My approach is relational, reflective and grounded in developmental science, with careful attention to the individual within their environment.</p>
+    <p>I believe that every person carries within them the capacity for growth — sometimes they just need the right support to find it.</p>
+    <br>
+    <a href="#contact" class="btn btn-green">Get in Touch</a>
+  </div>
+</section>
+
+<!-- WHO I HELP -->
+<section class="who">
+  <div class="center">
+    <p class="section-label">Who I Work With</p>
+    <h2 class="section-title">Support for every <span>stage of life</span></h2>
+    <p class="section-sub">From young children to adults navigating life transitions — comprehensive support across all life stages.</p>
+  </div>
+  <div class="who-grid">
+    <div class="who-card"><div class="who-icon">🧒</div><h4>Children</h4><p>Learning difficulties, developmental concerns, school readiness and emotional wellbeing</p></div>
+    <div class="who-card"><div class="who-icon">👨‍👩‍👧</div><h4>Families</h4><p>Parenting support, family dynamics, and navigating life transitions together</p></div>
+    <div class="who-card"><div class="who-icon">🎓</div><h4>Adults</h4><p>Life transitions, identity, meaning-making and personal development</p></div>
+    <div class="who-card"><div class="who-icon">🍎</div><h4>Educators</h4><p>Professional support, consultation and training for teachers and school staff</p></div>
+  </div>
+</section>
+
+<!-- PHOTO QUOTE -->
+<div class="photo-quote">
+  <div class="photo-quote-content">
+    <blockquote>"Even a minor event in the life of a child is an event of that child's world &amp; thus a world event"</blockquote>
+    <cite>— Gaston Bachelard —</cite>
+  </div>
+</div>
+
+<!-- COURSES -->
+<section class="courses" id="courses">
+  <p class="section-label">Learn Online</p>
+  <h2 class="section-title">Online Courses on LearnWorlds</h2>
+  <p class="section-sub">Access professional, self-paced courses on child development, learning and wellbeing — designed for parents, educators and professionals.</p>
+  <a href="#" class="btn btn-green">Browse Courses →</a>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-info">
+    <p class="section-label">Get In Touch</p>
+    <h2 class="section-title">Let's start a <span>conversation</span></h2>
+    <p>Whether you're a parent with concerns, an educator seeking support, or an adult navigating a life transition — I'm here to help. Please WhatsApp me to make an appointment.</p>
+    <div class="c-item"><span class="c-icon">📱</span><span>082 576 6459 (WhatsApp)</span></div>
+    <div class="c-item"><span class="c-icon">✉️</span><span>dorrithe@face-to-face.co.za</span></div>
+    <div class="c-item"><span class="c-icon">📍</span><span>Pretoria, South Africa</span></div>
+    <div class="contact-btns">
+      <a href="https://wa.me/27825766459" target="_blank" class="btn btn-green">WhatsApp Us</a>
+      <a href="https://www.facebook.com/f2f.educational.psychologist/" target="_blank" class="btn btn-outline">Facebook</a>
+    </div>
+  </div>
+  <div class="contact-form">
+    <h3>Send a message</h3>
+    <form name="contact" method="POST" data-netlify="true">
+      <input type="hidden" name="form-name" value="contact">
+      <div class="fg"><label>Your Name</label><input type="text" name="name" required placeholder="e.g. Jane Smith"></div>
+      <div class="fg"><label>Email Address</label><input type="email" name="email" required placeholder="your@email.com"></div>
+      <div class="fg"><label>I am a...</label><select name="type"><option>Parent</option><option>Educator</option><option>Adult seeking support</option><option>Professional / Referral</option><option>Other</option></select></div>
+      <div class="fg"><label>Message</label><textarea name="message" required placeholder="How can I help you?"></textarea></div>
+      <button type="submit" class="btn-submit">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo"><img src="face-to-face-facebook-profile-pic.png" alt="Face to Face"></div>
+  <p>© 2026 Dorrithé Labuschagne · All rights reserved</p>
+  <div class="footer-links">
+    <a href="https://www.facebook.com/f2f.educational.psychologist/" target="_blank">Facebook</a>
+    <a href="https://wa.me/27825766459" target="_blank">WhatsApp</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
 </body>
 </html>
